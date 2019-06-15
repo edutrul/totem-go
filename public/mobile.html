@@ -9,7 +9,6 @@
     <script defer src="/__/firebase/6.2.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/6.2.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
     <script defer src="/__/firebase/6.2.0/firebase-messaging.js"></script>
     <script defer src="/__/firebase/6.2.0/firebase-storage.js"></script>
@@ -43,16 +42,6 @@
     <script>
 
 
-      const firebase = require("firebase");
-      // Required for side-effects
-      require("firebase/firestore");
-
-      // Initialize Cloud Firestore through Firebase
-      firebase.initializeApp({
-        apiKey: '### FIREBASE API KEY ###',
-        authDomain: '### FIREBASE AUTH DOMAIN ###',
-        projectId: '### CLOUD FIRESTORE PROJECT ID ###'
-      });
 
       var db = firebase.firestore();
 
@@ -71,6 +60,33 @@
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
           document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+
+      const firebase = require("firebase");
+      // Required for side-effects
+      require("firebase/firestore");
+
+
+
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
+        authDomain: "cultural-go.firebaseapp.com",
+        databaseURL: "https://cultural-go.firebaseio.com",
+        projectId: "cultural-go",
+        storageBucket: "cultural-go.appspot.com",
+        messagingSenderId: "830797568340",
+        appId: "1:830797568340:web:1d17983d205a0262"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var db = firebase.firestore();
+      db.collection("current").doc("latest").update({
+        "name": "Telaya",
+        "option": "b",
+        "phone_number": "95654849",
+      });
+
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
