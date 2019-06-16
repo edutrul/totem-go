@@ -62,8 +62,21 @@
           // Store name to firestore.
           var db = firebase.firestore();
           db.collection("current").doc("latest").update("name", name);
-          // Redirect to
 
+          // Now ask user to choose option a) or b)
+          do {
+            var option = prompt("Ingresa opción 1 o 2 \n 1 por historia\n 2 por personaje", "");
+            console.log(option);
+          }
+          while (option != 1 && option != 2);
+          if (option == 1) {
+            db.collection("current").doc("latest").update("option", 1);
+            window.location.href = '/totem-video.html';
+          }
+          if (option == 2) {
+            db.collection("current").doc("latest").update("option", 2);
+            window.location.href = '/totem-video.html';
+          }
 
         } catch (e) {
           console.error(e);
