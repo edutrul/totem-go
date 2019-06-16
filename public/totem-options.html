@@ -14,13 +14,14 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
   </head>
   <body>
       <div class="totem-3" style="background-image: url('images/portada.png');">
         <div class="content">
-          <div class="center">
+          <div class="center" id="clic">
             <h1 id="heading">Hola</h1>
-            <h2>empecemos a conocer sobre {nombre del inmueble}.</h2>
+            <h1>empecemos a conocer sobre el Convento de Santo.</h1>
               <div class="content-option">
                   <img src="images/pergami.png" alt="">
                   <div class="options">
@@ -97,6 +98,12 @@
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
         }
       });
+      window.onload=function () {
+        var w = document.getElementById("clic");
+        w.onclick=function () {
+            console.log("click!");
+        }
+      }
     </script>
   </body>
 </html>
