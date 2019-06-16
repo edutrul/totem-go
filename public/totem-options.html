@@ -87,7 +87,8 @@
               var heading = "Bienvenido " + name;
               document.getElementById("heading").innerHTML = "Bienvenido " + name;
               var body = "Conozcamos un poco más sobre el Convento de Santo Domingo, uno de los 5 museos más importantes del Perú.";
-              responsiveVoice.speak(heading + body, "Spanish Latin American Male");
+              var speak_message = heading + body + ". Elija una opción 1 por Historia, 2 por Arquitectura, 3 por Personajes.";
+              responsiveVoice.speak(speak_message, "Spanish Latin American Male");
             } else {
               // doc.data() will be undefined in this case
               console.log("No such document!");
