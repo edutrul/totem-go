@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/6.2.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/6.2.0/firebase-auth.js"></script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -41,52 +40,38 @@
 
     <script>
 
-
-
-      var db = firebase.firestore();
-
       document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
         try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
+            authDomain: "cultural-go.firebaseapp.com",
+            databaseURL: "https://cultural-go.firebaseio.com",
+            projectId: "cultural-go",
+            storageBucket: "cultural-go.appspot.com",
+            messagingSenderId: "830797568340",
+            appId: "1:830797568340:web:1d17983d205a0262"
+          };
+
+          // Show input message to add name
+          var name = prompt("Ingresa tu nombre", "Amigo");
+          if (name != null) {
+            console.log(mame());
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            // Store name to firestore.
+            var db = firebase.firestore();
+            db.collection("current").doc("latest").update({
+              "name": mame,
+            });
+            // Redirect to
+
+          }
+
+
           document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-
-      const firebase = require("firebase");
-      // Required for side-effects
-      require("firebase/firestore");
-
-
-
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
-        authDomain: "cultural-go.firebaseapp.com",
-        databaseURL: "https://cultural-go.firebaseio.com",
-        projectId: "cultural-go",
-        storageBucket: "cultural-go.appspot.com",
-        messagingSenderId: "830797568340",
-        appId: "1:830797568340:web:1d17983d205a0262"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-
-      var db = firebase.firestore();
-      db.collection("current").doc("latest").update({
-        "name": "Telaya",
-        "option": "b",
-        "phone_number": "95654849",
-      });
-
+          console.log(app);
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
