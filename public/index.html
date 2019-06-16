@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div id="message" style="display:none;">
+    <div id="message">
       <!--h2>Hola</h2-->
       <div id="top-title">
         <h1>{Inmubele aqui}</h1>
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="totem-2">
+    <div class="totem-2" style="display: none;">
       <video src="video/convento.mp4" muted autoplay loop></video>
       <div class="content-totem2">
           <div id="top-title">
@@ -59,8 +59,24 @@
           </div>
       </div>
     </div>
-    <div class="totem-3">
-      
+    <div class="totem-3" style="background-image: url('images/portada.png');display: none;">
+      <div class="content">
+        <div class="center">
+            <h1>Bienvenido {Nombre} empecemos a conocer sobre {nombre del inmueble}.</h1>
+            <div class="content-option">
+                <img src="images/pergami.png" alt="">
+                <div class="options">
+                  <div>
+                      <h1>Opciones: </h1>
+                      <ul>
+                        <li><h2>Historia</h2></li>
+                        <li><h2>Personas</h2></li>
+                      </ul>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
     <!--p id="load">Firebase SDK Loading&hellip;</p-->
 
