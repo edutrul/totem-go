@@ -19,7 +19,7 @@
     <div id="message">
       <!--h2>Hola</h2-->
       <div id="top-title">
-        <h1>Bienvenido {Nombre}</h1>
+        <h1 id="heading">Bienvenido </h1>
 
       </div>
       <div style="text-align: center">
@@ -62,6 +62,22 @@
           }).catch(function(error) {
             console.log("Error getting document:", error);
           });
+
+          // Get name.
+          var docRef = db.collection("current").doc("latest");
+          docRef.get().then(function(doc) {
+            if (doc.exists) {
+              console.log("Document data:", doc.data().name);
+              var name = doc.data().name;
+              document.getElementById("heading").innerHTML = "Bienvenido " + name;
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          }).catch(function(error) {
+            console.log("Error getting document:", error);
+          });
+
 
           // Listen for changes:
           let observer = docRef.onSnapshot(docSnapshot => {
