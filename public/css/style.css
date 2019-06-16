@@ -15,15 +15,16 @@ body {
     margin: 0; 
     padding: 0;
 }
-.totem-2 > video{
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+.totem-2 > .content-totem2 > video{
+    width: 160%;
+    height: 800px;
+    max-width: 160%;
+    margin-left: -30%;
+    background: #000;
 }
 #message > #top-title,
-.totem-2 > .content-totem2 > #top-title { 
+.totem-2 > .content-totem2 > #top-title,
+.totem-3 > .top-title { 
     width: 100%;
     height: 168px;
     background: #000;
@@ -33,11 +34,14 @@ body {
     justify-content: center;
 }
 #message > #top-title h1,
-.totem-2 > .content-totem2 > #top-title h1{
+.totem-2 > .content-totem2 > #top-title h1,
+.totem-3 > .top-title > h1{
     font-size: 40px;
     margin: 0 20px;
+    font-size: 56px;
 }
-#message > #content-center{
+#message > #content-center,
+.totem-3 > .content-center{
     width: 100%;
     height: calc(100vh - 168px);
     background-position: center;
@@ -112,20 +116,23 @@ body {
 }
 .totem-2 > .content-totem2 > .loading{
     width: 100%;
-    height: calc(100% - 168px);
+    height: calc(100% - 968px);
     display: flex;
+    background: #fff;
     align-items: center;
     justify-content: center;
 }
 .totem-2 > .content-totem2 > .loading > .content-load{
     text-align: center;
     font-size: 30px;
-    color: #fff;
 }
 .totem-2 > .content-totem2 > .loading > .content-load img{
-    height: 200px;
+    height: 150px;
 }
-
+.totem-2 > .content-totem2 > .loading > .content-load > h1,
+.totem-2 > .content-totem2 > .loading > .content-load > p{
+    margin: 10px;
+}
 /*totem-3*/
 .totem-3{
     max-width: 100%;
@@ -138,39 +145,45 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.totem-3 > .content{
+.totem-3 > .content-center > .center{
     width: 100%;
     height: 100%;
-    display: flex;
     background: rgba(0,0,0, 0.5);
-    align-items: center;
-    justify-content: center;
-}
-.totem-3 > .content > .center{
-    text-align: center;
-    width: 80%;
-}
-.totem-3 > .content > .center > h1{
-    font-size: 60px;
-    color: #fff;
-}
-.totem-3 > .content > .center > .content-option{
-    width: 100%;
-    height: auto;
-    position: relative;
-}
-.totem-3 > .content > .center > .content-option > img{
-    width: 100%;
-}
-.totem-3 > .content > .center > .content-option > .options{
-    position: absolute;
-    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-align: left;
+}
+.totem-3 > .content-center > .center > .ct-center{
+    color: #fff;
+    width: 70%;
+    text-align: center;
+}
+.totem-3 > .content-center > .center > .ct-center > h1{
+    font-size: 60px;
+}
+.totem-3 > .content-center > .center > .ct-center > h2{
+    font-size: 40px;
+    font-weight: 400;
+}
+.totem-3 > .content-center > .center > .ct-center > h3{
+    font-size: 32px;
+    font-weight: 400;
+}
+.totem-3 > .content-center > .center > .ct-center > .btn-opt{
+    width: 550px;
+    height: 124px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 15px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 48px;
+}
+.totem-3 > .content-center > .center > .ct-center > .btn-opt > img{
+    margin-right: 20px;
+    height: 74px;
 }
 #load { 
     color: rgba(0,0,0,0.4); 
