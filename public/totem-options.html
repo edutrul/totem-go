@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="message">
+      <!--h2>Hola</h2-->
+      <div id="top-title">
+        <h1>Bienvenido {Nombre}</h1>
+
+      </div>
+      <div style="text-align: center">
+        <br>
+        {IMAGEN A} <a href="/totem-option-a">OPCIÓN A</a>
+        <br>
+        <br>
+        {IMAGEN B} <a href="/totem-option-a">OPCIÓN B</a>
+      </div>
+
+    </div>
+    <!--p id="load">Firebase SDK Loading&hellip;</p-->
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        try {
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
+            authDomain: "cultural-go.firebaseapp.com",
+            databaseURL: "https://cultural-go.firebaseio.com",
+            projectId: "cultural-go",
+            storageBucket: "cultural-go.appspot.com",
+            messagingSenderId: "830797568340",
+            appId: "1:830797568340:web:1d17983d205a0262"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          var db = firebase.firestore();
+
+          var docRef = db.collection("current").doc("latest");
+          docRef.get().then(function(doc) {
+            if (doc.exists) {
+              console.log("Document data:", doc.data());
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          }).catch(function(error) {
+            console.log("Error getting document:", error);
+          });
+
+          // Listen for changes:
+          let observer = docRef.onSnapshot(docSnapshot => {
+            //window.location.href = '/totem-options';
+            console.log(`Received doc snapshot: ${docSnapshot}`);
+          }, err => {
+            console.log(`Encountered error: ${err}`);
+          });
+
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>

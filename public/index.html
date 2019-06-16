@@ -4,16 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/6.2.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/6.2.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/6.2.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -82,20 +81,35 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
         try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
+            authDomain: "cultural-go.firebaseapp.com",
+            databaseURL: "https://cultural-go.firebaseio.com",
+            projectId: "cultural-go",
+            storageBucket: "cultural-go.appspot.com",
+            messagingSenderId: "830797568340",
+            appId: "1:830797568340:web:1d17983d205a0262"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          var db = firebase.firestore();
+
+          // Listen for changes:
+          let observer = db.collection('current').onSnapshot(querySnapshot => {
+            querySnapshot.docChanges().forEach(change => {
+              // If any document has been updated then redirect to /totem-options.
+              if (change.type === 'modified') {
+                // Use change.doc.data() and you get a json key object {name: "dff"}.
+                window.location.href = '/totem-options.html';
+                console.log('being updated');
+              }
+            });
+          });
+
+
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
