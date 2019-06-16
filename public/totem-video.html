@@ -84,14 +84,6 @@
           });
 
 
-          // Listen for changes:
-          let observer = docRef.onSnapshot(docSnapshot => {
-            //window.location.href = '/totem-options';
-            console.log(`Received doc snapshot: ${docSnapshot}`);
-          }, err => {
-            console.log(`Encountered error: ${err}`);
-          });
-
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
