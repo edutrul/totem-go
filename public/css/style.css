@@ -50,7 +50,7 @@ body {
 }
 #message > #content-center > .center-rs{
     width: 100%;
-    height: calc(100% - 330px);
+    height: calc(100% - 430px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +79,7 @@ body {
 }
 #message > #content-center > .bottom-qr{
     width: 100%;
-    height: 330px;
+    height: 430px;
     background: rgba(0,0,0,0.8);
     display: flex;
     align-items: center;
@@ -92,7 +92,7 @@ body {
     font-size: 24px;
 }
 #message > #content-center > .bottom-qr > .ct-img > img{
-    height: 200px;
+    height: 250px;
 }
 #message > #content-center > .bottom-qr > .ct-text{
     color: #fff;
@@ -184,6 +184,25 @@ body {
 .totem-3 > .content-center > .center > .ct-center > .btn-opt > img{
     margin-right: 20px;
     height: 74px;
+}
+.ct-thank{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ct-thank > div {
+    width: 60%;
+    text-align: center;
+}
+.ct-thank > div > img{
+    height: 300px;
+    margin-bottom: 20px;
+}
+.ct-thank > div > h1{
+    font-size: 56px;
 }
 #load { 
     color: rgba(0,0,0,0.4); 
