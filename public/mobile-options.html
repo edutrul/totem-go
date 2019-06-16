@@ -7,10 +7,10 @@
     <script>
       // Now ask user to choose option a) or b)
       do {
-        var option = prompt("Ingresa opción 1 o 2 \n 1 por historia\n 2 por personaje", "");
+        var option = prompt("Ingresa opción 1, 2 ó 3 \n 1 por Historia\n 2 por Arquitectura \n 3 Personajes", "");
         console.log(option);
       }
-      while (option != 1 && option != 2);
+      while (option != 1 && option != 2 && option != 3);
 
     </script>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
@@ -69,6 +69,9 @@
           }
           if (option == 2) {
             db.collection("current").doc("latest").update("option", 2);
+          }
+          if (option == 3) {
+            db.collection("current").doc("latest").update("option", 3);
           }
         } catch (e) {
           console.error(e);
