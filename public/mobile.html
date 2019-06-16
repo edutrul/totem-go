@@ -71,11 +71,9 @@
           while (option != 1 && option != 2);
           if (option == 1) {
             db.collection("current").doc("latest").update("option", 1);
-            window.location.href = '/totem-video.html';
           }
           if (option == 2) {
             db.collection("current").doc("latest").update("option", 2);
-            window.location.href = '/totem-video.html';
           }
 
         } catch (e) {

@@ -86,11 +86,15 @@
 
 
           // Listen for changes:
-          let observer = docRef.onSnapshot(docSnapshot => {
-            //window.location.href = '/totem-options';
-            console.log(`Received doc snapshot: ${docSnapshot}`);
-          }, err => {
-            console.log(`Encountered error: ${err}`);
+          let observer = db.collection('current').onSnapshot(querySnapshot => {
+            querySnapshot.docChanges().forEach(change => {
+              // If any document has been updated then redirect to /totem-options.
+              if (change.type === 'modified') {
+                // Use change.doc.data() and you get a json key object {name: "dff"}.
+                window.location.href = '/totem-video.html';
+                console.log('being updated');
+              }
+            });
           });
 
         } catch (e) {
