@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+	<!-- Get jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="scripts/typed.js" type="text/javascript"></script>
+	<style>
+		/* code for animated blinking cursor */
+		#typed-cursor{
+			opacity: 1;
+			font-weight: 100;
+			-webkit-animation: blink 0.7s infinite;
+			-moz-animation: blink 0.7s infinite;
+			-ms-animation: blink 0.7s infinite;
+			-o-animation: blink 0.7s infinite;
+			animation: blink 0.7s infinite;
+		}
+		@-keyframes blink{
+			0% { opacity:1; }
+			50% { opacity:0; }
+			100% { opacity:1; }
+		}
+		@-webkit-keyframes blink{
+			0% { opacity:1; }
+			50% { opacity:0; }
+			100% { opacity:1; }
+		}
+		@-moz-keyframes blink{
+			0% { opacity:1; }
+			50% { opacity:0; }
+			100% { opacity:1; }
+		}
+		@-ms-keyframes blink{
+			0% { opacity:1; }
+			50% { opacity:0; }
+			100% { opacity:1; }
+		}
+		@-o-keyframes blink{
+			0% { opacity:1; }
+			50% { opacity:0; }
+			100% { opacity:1; }
+		}
+  </style>
+  
+  <script>
+      $(function(){
+    
+        $("#typed").typed({
+          strings: ["Este glorioso Convento tiene sus orígenes desde el primer día de la fundación de lima."],
+          typeSpeed: 30,
+          backDelay: 500,
+          loop: false,
+          // defaults to false for infinite loop
+          loopCount: true,
+          callback: function(){ foo(); }
+        });
+    
+        function foo(){ 
+          var cursor = document.getElementById('typed-cursor');
+          cursor.style.display = "none";  
+        }
+    
+      });
+      </script>
+  </head>
+  <body>
+    <div class="totem-2">
+      <div class="content-totem2">
+          <div id="top-title">
+            <h1>Convento Santo Domingo</h1>
+          </div>
+          <video src="video/convento.mp4" muted autoplay loop></video>
+          <div class="loading">
+            <div class="content-load">
+                <h2>Bienvenido</h2>
+                <img src="images/notification.png" alt=""><br>
+                <p>Hemos enviado una notificación en tu móvil.</p>
+                <img src="images/loading.gif" alt="">
+            </div>
+          </div>
+      </div>
+    </div>
+    
+    <!--p id="load">Firebase SDK Loading&hellip;</p-->
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        try {
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyBbnc_ZSwx8JQdHuPiMmUiXXl-W906AOSE",
+            authDomain: "cultural-go.firebaseapp.com",
+            databaseURL: "https://cultural-go.firebaseio.com",
+            projectId: "cultural-go",
+            storageBucket: "cultural-go.appspot.com",
+            messagingSenderId: "830797568340",
+            appId: "1:830797568340:web:1d17983d205a0262"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          var db = firebase.firestore();
+
+          // Listen for changes:
+          let observer = db.collection('current').onSnapshot(querySnapshot => {
+            querySnapshot.docChanges().forEach(change => {
+              // If any document has been updated then redirect to /totem-options.
+              if (change.type === 'modified') {
+                // Use change.doc.data() and you get a json key object {name: "dff"}.
+                window.location.href = '/totem-options.html';
+                console.log('being updated');
+              }
+            });
+          });
+
+
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
