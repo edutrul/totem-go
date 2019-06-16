@@ -146,12 +146,23 @@
           let observer = db.collection('current').onSnapshot(querySnapshot => {
             console.log('Listening...');
             querySnapshot.docChanges().forEach(change => {
-              // If any document has been updated then redirect to /totem-options.
+              // If any document has been updated.
               if (change.type === 'modified') {
-                // Use change.doc.data() and you get a json key object {name: "dff"}.
-                window.location.href = '/totem-options.html';
+                console.log('modifyiii');
                 console.log(change.doc.data());
-                console.log('being updated');
+                // Use change.doc.data() and you get a json key object {name: "dff"}.
+                var data = change.doc.data();
+                // If user still is typing then redirect to /totem-notifi.html url.
+                if (data.loading_name != undefined && data.loading_name) {
+                  window.location.href = '/totem-notifi.html';
+                  console.log('being updated loading_name true');
+                }
+                // If user has finished typing then redirect to /totem-options url.
+                else {
+                  window.location.href = '/totem-options.html';
+                  console.log('being updated else statement');
+                }
+
               }
             });
           });

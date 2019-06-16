@@ -70,6 +70,7 @@
           if (option == 3) {
             db.collection("current").doc("latest").update("option", 3);
           }
+          db.collection("current").doc("latest").update("loading_name", false);
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';

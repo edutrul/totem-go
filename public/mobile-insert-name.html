@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
-
+    <script>
+      var name = prompt("Ingresa tu nombre", "");
+    </script>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -55,7 +57,10 @@
           var db = firebase.firestore();
           // Show input message to add name
           console.log(name);
-          db.collection("current").doc("latest").update("loading_name", true);
+          if (name != null) {
+            db.collection("current").doc("latest").update("name", name);
+            db.collection("current").doc("latest").update("loading_name", false);
+          }
 
         } catch (e) {
           console.error(e);
@@ -66,7 +71,9 @@
        // It may be that transacations insert require async functions...
        let observer = db.collection('current').onSnapshot(querySnapshot => {
          console.log('Listening...');
-         window.location.href = '/mobile-insert-name.html';
+           window.location.href = '/mobile-options.html';
+         querySnapshot.docChanges().forEach(change => {
+         });
        });
     </script>
   </body>
