@@ -87,6 +87,7 @@
 
           // Listen for changes:
           let observer = db.collection('current').onSnapshot(querySnapshot => {
+            console.log('listening...');
             querySnapshot.docChanges().forEach(change => {
               // If any document has been updated then redirect to /totem-options.
               if (change.type === 'modified') {

@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
     <script>
-      var name = prompt("Ingresa tu nombre", "");
+      // Now ask user to choose option a) or b)
+      do {
+        var option = prompt("Ingresa opción 1 o 2 \n 1 por historia\n 2 por personaje", "");
+        console.log(option);
+      }
+      while (option != 1 && option != 2);
+
     </script>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
@@ -58,11 +64,12 @@
           var db = firebase.firestore();
           // Show input message to add name
           console.log(name);
-          if (name != null) {
-            db.collection("current").doc("latest").update("name", name);
+          if (option == 1) {
+            db.collection("current").doc("latest").update("option", 1);
           }
-          //window.location.href = '/mobile-options.html';
-
+          if (option == 2) {
+            db.collection("current").doc("latest").update("option", 2);
+          }
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
@@ -72,7 +79,7 @@
        // It may be that transacations insert require async functions...
        let observer = db.collection('current').onSnapshot(querySnapshot => {
          console.log('Listening...');
-           window.location.href = '/mobile-options.html';
+         //window.location.href = '/mobile-options.html';
          querySnapshot.docChanges().forEach(change => {
          });
        });

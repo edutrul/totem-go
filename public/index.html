@@ -54,10 +54,10 @@
 			100% { opacity:1; }
 		}
   </style>
-  
+
   <script>
       $(function(){
-    
+
         $("#typed").typed({
           strings: ["Este glorioso Convento tiene sus orígenes desde el primer día de la fundación de lima."],
           typeSpeed: 30,
@@ -67,12 +67,12 @@
           loopCount: true,
           callback: function(){ foo(); }
         });
-    
-        function foo(){ 
+
+        function foo(){
           var cursor = document.getElementById('typed-cursor');
-          cursor.style.display = "none";  
+          cursor.style.display = "none";
         }
-    
+
       });
       </script>
   </head>
@@ -119,7 +119,7 @@
           </div>
       </div>
     </div>
-    
+
     <!--p id="load">Firebase SDK Loading&hellip;</p-->
 
     <script>
@@ -142,11 +142,13 @@
 
           // Listen for changes:
           let observer = db.collection('current').onSnapshot(querySnapshot => {
+            console.log('Listening...');
             querySnapshot.docChanges().forEach(change => {
               // If any document has been updated then redirect to /totem-options.
               if (change.type === 'modified') {
                 // Use change.doc.data() and you get a json key object {name: "dff"}.
                 window.location.href = '/totem-options.html';
+                console.log(change.doc.data());
                 console.log('being updated');
               }
             });
